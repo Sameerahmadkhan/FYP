@@ -16,4 +16,4 @@ export const IndividualProduct = ({individualProduct, addToCart}) => {
             <div className='btn btn-danger btn-md cart-btn' onClick={handleAddToCart}>ADD TO CART</div>
         </div> 
     )
-}
+} 

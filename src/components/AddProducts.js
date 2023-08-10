@@ -93,7 +93,7 @@ function AddProducts() {
 
         <div className='error-msg'>{imageError}</div>
         </>}   
-        <br></br>
+        {/* <br></br> */}
 
         <div style={{display:'flex', justifyContent:'flex-end'}}>
             <button type="submit" className='btn btn-success btn-md'>

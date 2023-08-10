@@ -2,9 +2,11 @@ import React,{useState, useEffect} from 'react'
 import { Navbar } from './Navbar'
 import { Products } from './Products'
 import {auth,fs} from '../Config/Config'
+import { useNavigate } from 'react-router-dom'
+import Carousel from './CarouselOne'
 
-export const Home = (props) => {
-
+export const Home = () => {
+    const navigate = useNavigate();
     // getting current user uid
     function GetUserUid(){
         const [uid, setUid]=useState(null);
@@ -28,6 +30,7 @@ export const Home = (props) => {
                 if(user){
                     fs.collection('users').doc(user.uid).get().then(snapshot=>{
                         setUser(snapshot.data().FullName);
+                        localStorage.setItem("userEmail",snapshot.data().Email )
                     })
                 }
                 else{
@@ -39,6 +42,7 @@ export const Home = (props) => {
     }
 
     const user = GetCurrentUser();
+    console.log("userssss:", user)
     // console.log(user);
     
     // state of products
@@ -94,7 +98,7 @@ export const Home = (props) => {
 
         }
         else{
-            props.history.push('/login');
+            navigate('/login');
         }
         
     }
@@ -102,7 +106,7 @@ export const Home = (props) => {
     return (
         <>
             <Navbar user={user} totalProducts={totalProducts}/>           
-            <br></br>
+            <Carousel />
             {products.length > 0 && (
                 <div className='container-fluid'>
                     <h1 className='text-center'>Products</h1>
